@@ -1,3 +1,4 @@
-cumbaleitors
-# daw
-Deploy Class Stuf
+Manual "Patitas"
+
+- Pagina principal: 
+- P
