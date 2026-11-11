@@ -1,9 +1,0 @@
-   {
-   "id": "ANIMAL-001",
-    "nombre": "Terrie",
-    "especie": "Perro",
-    "raza": "Terrier",
-    "edad_anos": 3,
-    "sexo": "Macho",
-    "peso_kg": 8.0
-   }
