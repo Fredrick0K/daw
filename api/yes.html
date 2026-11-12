@@ -1,31 +1,56 @@
-<!DOCTYPE html>
+Puedes obtener datos JSON de una API y mostrarlos en HTML usando JavaScript con fetch() o XMLHttpRequest.
+Aquí te dejo un ejemplo completo, robusto y funcional que puedes copiar y ejecutar directamente.
+
+Ejemplo con fetch() y manejo de errores
+Html<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Animales</title>
+    <meta charset="UTF-8">
+    <title>Mostrar JSON de API</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .item { border-bottom: 1px solid #ccc; padding: 8px; }
+    </style>
 </head>
 <body>
-  <h1>Lista de animales</h1>
-  <ul id="lista"></ul>
+    <h1>Datos desde API</h1>
+    <div id="contenedor">Cargando datos...</div>
 
-  <script>
-    fetch("/api/animales")
-      .then(respuesta => respuesta.json())
-      .then(datos => {
-        const lista = document.getElementById("lista");
+    <script>
+        // URL de ejemplo (puedes cambiarla por tu API real)
+        const apiURL = "http://127.0.0.1:8000/api/animales";
 
-        datos.animales.forEach((animal, indice) => {
-          const elemento = document.createElement("li");
-          elemento.textContent = `${indice + 1}. ${JSON.stringify(animal)}`;
-          lista.appendChild(elemento);
-        });
-      })
-      .catch(error => {
-        document.getElementById("lista").textContent =
-          "No se pudieron cargar los animales.";
-        console.error(error);
-      });
-  </script>
+        // Función para obtener y mostrar datos
+        async function cargarDatos() {
+            try {
+                const respuesta = await fetch(apiURL);
+
+                // Validar que la respuesta sea correcta
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
+                const datos = await respuesta.json();
+
+                // Generar HTML
+                const contenedor = document.getElementById("contenedor");
+                contenedor.innerHTML = ""; // Limpiar contenido previo
+
+                datos.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "item";
+                    div.innerHTML = `<strong>${item.title}</strong><br>${item.body}`;
+                    contenedor.appendChild(div);
+                });
+
+            } catch (error) {
+                document.getElementById("contenedor").innerHTML =
+                    `<p style="color:red;">Error al cargar datos: ${error.message}</p>`;
+            }
+        }
+
+        // Ejecutar la función
+        cargarDatos();
+    </script>
 </body>
 </html>
