@@ -1,44 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML Test Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 20px;
-      background: #f4f6f8;
-      color: #222;
-    }
-
-    .card {
-      padding: 24px;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px #0002;
-    }
-
-    button {
-      padding: 10px 16px;
-      border: 0;
-      border-radius: 6px;
-      background: #2563eb;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animales</title>
 </head>
 <body>
-  <main class="card">
-    <h1>HTML Test Page</h1>
-    <p>If you can see this, your HTML is working.</p>
-    <button onclick="document.getElementById('message').textContent = 'Button works!'">
-      Test button
-    </button>
-    <p id="message"></p>
-  </main>
+  <h1>Lista de animales</h1>
+  <ul id="lista"></ul>
+
+  <script>
+    fetch("/api/animales")
+      .then(respuesta => respuesta.json())
+      .then(datos => {
+        const lista = document.getElementById("lista");
+
+        datos.animales.forEach((animal, indice) => {
+          const elemento = document.createElement("li");
+          elemento.textContent = `${indice + 1}. ${JSON.stringify(animal)}`;
+          lista.appendChild(elemento);
+        });
+      })
+      .catch(error => {
+        document.getElementById("lista").textContent =
+          "No se pudieron cargar los animales.";
+        console.error(error);
+      });
+  </script>
 </body>
 </html>
