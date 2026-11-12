@@ -1,0 +1,4 @@
+*.key
+*.crt
+nginx/conf/*.key
+nginx/conf/*.crt
