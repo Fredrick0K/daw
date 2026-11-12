@@ -21,3 +21,6 @@
 2026-11-11T18:33:55+01:00 | 127.0.0.1 | GET /FichaAdopcion.txt | 200 | 795 bytes | 0.000 s
 2026-11-11T18:34:10+01:00 | 127.0.0.1 | GET /RequisitosAdopcion.txt | 200 | 928 bytes | 0.000 s
 2026-11-11T18:34:22+01:00 | 127.0.0.1 | GET /GuiaCuidadosBasicos.txt | 200 | 1144 bytes | 0.000 s
+2026-11-12T15:13:20+01:00 | 127.0.0.1 | GET / | 200 | 562 bytes | 0.000 s
+2026-11-12T15:13:20+01:00 | 127.0.0.1 | GET /favicon.ico | 404 | 181 bytes | 0.000 s
+2026-11-12T15:13:26+01:00 | 127.0.0.1 | GET /FichaAdopcion.txt | 200 | 795 bytes | 0.000 s
