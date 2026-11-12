@@ -1,4 +1,14 @@
 [
-    { "id": "ANIMAL-001", "nombre": "Terrie", "especie": "Perro", "raza": "Terrier"},
-   {"id": "ANIMAL-002", "nombre": "Luna", "especie": "Gato","raza": "Europeo Común"}
+    {
+        "id": "ANIMAL-001",
+        "nombre": "Terrie",
+        "especie": "Perro",
+        "raza": "Terrier"
+    },
+    {
+        "id": "ANIMAL-002",
+        "nombre": "Luna",
+        "especie": "Gato",
+        "raza": "Europeo Común"
+    }
 ]
