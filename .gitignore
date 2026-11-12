@@ -1,4 +1,4 @@
 *.key
 *.crt
-daw\nginx\conf\*.key
-daw\nginx\conf\*.crt
+daw/nginx/conf/*.key
+daw/nginx/conf/*.crt
