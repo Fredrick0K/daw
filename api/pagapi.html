@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar JSON de API</title>
+    <style>
+        :root {
+    --primario: #0d9488; /* Verde azulado */
+    --secundario: #f97316; /* Naranja cálido */
+    --fondo: #f0fdfa; /* Fondo suave */
+    --texto: #334155;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    </style>
+</head>
+<body>
+    <h1>Datos desde API</h1>
+    <div id="contenedor">Cargando datos...</div>
+
+    <script>
+        // URL de ejemplo (puedes cambiarla por tu API real)
+        const apiURL = "http://127.0.0.1:8000/api/animales";
+
+        // Función para obtener y mostrar datos
+        async function cargarDatos() {
+            try {
+                const respuesta = await fetch(apiURL);
+
+                // Validar que la respuesta sea correcta
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
+                const datos = await respuesta.json();
+
+                // Generar HTML
+                const contenedor = document.getElementById("contenedor");
+                contenedor.innerHTML = ""; // Limpiar contenido previo
+
+                datos.forEach(item => {
+                    const div = document.createElement("div");
+                    div.className = "item";
+                    div.innerHTML = `<strong>${item.title}</strong><br>${item.body}`;
+                    contenedor.appendChild(div);
+                });
+
+            } catch (error) {
+                document.getElementById("contenedor").innerHTML =
+                    `<p style="color:red;">Error al cargar datos: ${error.message}</p>`;
+            }
+        }
+
+        // Ejecutar la función
+        cargarDatos();
+    </script>
+</body>
+</html>
