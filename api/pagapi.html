@@ -1,15 +1,26 @@
-Puedes obtener datos JSON de una API y mostrarlos en HTML usando JavaScript con fetch() o XMLHttpRequest.
-Aquí te dejo un ejemplo completo, robusto y funcional que puedes copiar y ejecutar directamente.
-
-Ejemplo con fetch() y manejo de errores
-Html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Mostrar JSON de API</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .item { border-bottom: 1px solid #ccc; padding: 8px; }
+        :root {
+    --primario: #0d9488; /* Verde azulado */
+    --secundario: #f97316; /* Naranja cálido */
+    --fondo: #f0fdfa; /* Fondo suave */
+    --texto: #334155;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
     </style>
 </head>
 <body>
