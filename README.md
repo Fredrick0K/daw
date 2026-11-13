@@ -1,3 +1,8 @@
+### 
+> [!caution] 
+> ### No subir nada al main, todo a tu rama correspondiente. Cualquir commit puede causar conflictos en futuros merge.
+> Los nuevos cambios en las ramas se hara merge a la base para que todos estemos al dia.
+
 Manual "Patitas"
 
 
