@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar JSON de API</title>
+    <style>
+        :root {
+    --primario: #0d9488; /* Verde azulado */
+    --secundario: #f97316; /* Naranja cálido */
+    --fondo: #f0fdfa; /* Fondo suave */
+    --texto: #334155;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+    </style>
+</head>
+<body>
+    <h1>Datos desde API</h1>
+    <div id="contenedor">Cargando datos...</div>
+
+    <script>
+        // Usa el proxy del mismo origen de Nginx, no una dirección interna del contenedor.
+        const apiURL = "/api/animales";
+
+        // Función para obtener y mostrar datos
+        async function cargarDatos() {
+            try {
+                const respuesta = await fetch(apiURL);
+
+                // Validar que la respuesta sea correcta
+                if (!respuesta.ok) {
+                    throw new Error(`Error HTTP: ${respuesta.status}`);
+                }
+
+                const datos = await respuesta.json();
+
+                const contenedor = document.getElementById("contenedor");
+                contenedor.innerHTML = "";
+
+                datos.animales.forEach(animal => {
+                    const div = document.createElement("div");
+                    div.className = "item";
+                    div.textContent = `${animal.nombre} (${animal.especie}) - ${animal.raza}`;
+                    contenedor.appendChild(div);
+                });
+
+            } catch (error) {
+                document.getElementById("contenedor").innerHTML =
+                    `<p style="color:red;">Error al cargar datos: ${error.message}</p>`;
+            }
+        }
+
+        // Ejecutar la función
+        cargarDatos();
+    </script>
+</body>
+</html>

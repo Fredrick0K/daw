@@ -1,0 +1,8 @@
+# Excluye archivos locales, certificados y metadatos de Git de las imágenes.
+.git
+nginx-1.28.3
+logs
+**/__pycache__
+*.py[cod]
+*.crt
+*.key

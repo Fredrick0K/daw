@@ -1,0 +1,7 @@
+FROM nginx:alpine
+# Incluye la configuración del proxy y ambos sitios en la imagen de Nginx.
+COPY nginx/conf/nginx.conf /etc/nginx/nginx.conf
+COPY nginx/conf/usuarios.txt /etc/nginx/usuarios.txt
+COPY nginx/sitios/publica/ /usr/share/nginx/html/publica/
+COPY nginx/sitios/descargas/ /usr/share/nginx/html/descargas/
+COPY api/pagapi.html /usr/share/nginx/html/publica/api.html
