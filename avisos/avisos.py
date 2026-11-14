@@ -40,6 +40,7 @@ class Manejador(BaseHTTPRequestHandler):
 
 if __name__ == '__main__':
     # Usamos ThreadingHTTPServer para atender varios clientes a la vez en el puerto 8001
-    servidor = ThreadingHTTPServer(('127.0.0.1', 8001), Manejador)
+    # Escucha en la red del contenedor para que Nginx pueda redirigir las solicitudes.
+    servidor = ThreadingHTTPServer(('0.0.0.0', 8001), Manejador)
     print("Servidor de avisos (JSON) activo en el puerto 8001")
     servidor.serve_forever()

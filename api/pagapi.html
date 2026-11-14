@@ -28,8 +28,8 @@ body {
     <div id="contenedor">Cargando datos...</div>
 
     <script>
-        // URL de ejemplo (puedes cambiarla por tu API real)
-        const apiURL = "http://127.0.0.1:8000/api/animales";
+        // Usa el proxy del mismo origen de Nginx, no una dirección interna del contenedor.
+        const apiURL = "/api/animales";
 
         // Función para obtener y mostrar datos
         async function cargarDatos() {
@@ -43,14 +43,13 @@ body {
 
                 const datos = await respuesta.json();
 
-                // Generar HTML
                 const contenedor = document.getElementById("contenedor");
-                contenedor.innerHTML = ""; // Limpiar contenido previo
+                contenedor.innerHTML = "";
 
-                datos.forEach(item => {
+                datos.animales.forEach(animal => {
                     const div = document.createElement("div");
                     div.className = "item";
-                    div.innerHTML = `<strong>${item.title}</strong><br>${item.body}`;
+                    div.textContent = `${animal.nombre} (${animal.especie}) - ${animal.raza}`;
                     contenedor.appendChild(div);
                 });
 

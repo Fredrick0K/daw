@@ -25,5 +25,6 @@ def lenta():
     time.sleep(2)
     return {"listo": True}
 
-print("Aplicacion en http://127.0.0.1:8000  (Ctrl+C para parar)")
-serve(app, host="127.0.0.1", port=8000)
+print("API escuchando en el puerto 8000")
+# Escucha en la red del contenedor para que Nginx pueda acceder a la API.
+serve(app, host="0.0.0.0", port=8000)

@@ -1,0 +1,30 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    restart: unless-stopped
+
+  avisos:
+    build:
+      context: .
+      dockerfile: avisos/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+
+  nginx:
+    # Solo el proxy inverso queda expuesto al equipo anfitrión.
+    build:
+      context: .
+      dockerfile: docker/dockerfile
+    depends_on:
+      - api
+      - avisos
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/conf/publica.crt:/etc/nginx/certs/publica.crt:ro
+      - ./nginx/conf/publica.key:/etc/nginx/certs/publica.key:ro
+    restart: unless-stopped
