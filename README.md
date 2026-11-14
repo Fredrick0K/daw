@@ -22,7 +22,7 @@ Manual "Patitas"
 
 <!-- Instrucciones para ejecutar el proyecto con Docker Compose. -->
 
-## Ejecutar con Docker
+## Ejecucion con Docker
 
 1. En GitHub Codespaces, abre una terminal en la raíz del proyecto y comprueba que Docker Compose está disponible con `docker compose version`. En Windows local, instala y arranca Docker Desktop con el motor de contenedores Linux habilitado.
 2. Nginx necesita los certificados locales `nginx/conf/publica.crt` y `nginx/conf/publica.key`. Si no están en tu copia del proyecto, créalos desde Git Bash con OpenSSL:
