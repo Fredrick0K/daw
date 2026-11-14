@@ -44,3 +44,4 @@
 2026/11/14 10:52:49 [emerg] 15332#12128: "server" directive is not allowed here in C:\daw\nginx-1.28.3/conf/nginx.conf:79
 2026/11/14 10:54:39 [emerg] 7088#232: "server" directive is not allowed here in C:\daw\nginx-1.28.3/conf/nginx.conf:79
 2026/11/14 10:55:08 [notice] 15876#11360: signal process started
+2026/11/14 10:55:21 [error] 11500#7140: *38 "C:\daw\nginx-1.28.3/sitios/publica/avisos/index.html" is not found (3: El sistema no puede encontrar la ruta especificada), client: 127.0.0.1, server: publica.localhost, request: "GET /avisos/ HTTP/1.1", host: "publica.localhost:8443", referrer: "https://publica.localhost:8443/socios/"
