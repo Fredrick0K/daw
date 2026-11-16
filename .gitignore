@@ -2,3 +2,12 @@
 *.crt
 daw/nginx/conf/*.key
 daw/nginx/conf/*.crt
+
+# Archivos temporales generados al arrancar y probar el Nginx local.
+/nginx-1.28.3/logs/*.log
+/nginx-1.28.3/logs/nginx.pid
+/api/pid.txt
+/avisos/pid.txt
+/logs/api_salida.txt
+/logs/avisos_salida.txt
+/pruebas.txt

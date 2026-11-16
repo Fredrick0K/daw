@@ -1,5 +1,6 @@
 #!/bin/bash
 # Arranca el servidor entero. Desde la carpeta del trabajo, en Git Bash: bash arrancar.sh
+set -o pipefail  # Propaga errores de comandos dentro de tuberías, como las pruebas enviadas a tee.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"  # Obtiene la carpeta de este script.
 NGINX_DIR="$SCRIPT_DIR/nginx-1.28.3"  # Guarda la ruta de Nginx local.
