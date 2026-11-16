@@ -21,17 +21,18 @@ Este servidor aloja la infraestructura web de la **Protectora de animales "Patit
 
 ---
 
-## 2. Mapa del Servidor (Dónde está cada cosa)
+## 2. Mapa del Servidor
+### Por Aritz y Mohammad
 
 Todo funciona en tu propio ordenador, pero Nginx lo divide en "puertos" como si fueran puertas distintas de un mismo edificio:
 
-- **Puerta HTTP (Puerto 8080 - Tráfico normal):**
+- **Puerta HTTP (Puerto 8080):**
 
   - `publica.localhost`: Si alguien entra por aquí, Nginx lo empuja automáticamente a la puerta segura (HTTPS).
   - `descargas.localhost`: Un servidor tipo "carpeta" que muestra directamente archivos para descargar (fichas, guias).
   - _Cualquier otro intento:_ Cierre de puerta en la cara (Error 444).
 
-- **Puerta HTTPS (Puerto 8443 - Tráfico seguro con candado):**
+- **Puerta HTTPS (Puerto 8443):**
 
   - La web principal (Portada, Quiénes Somos, Contacto).
   - `/socios/`: Carpeta blindada con contraseña.
@@ -43,6 +44,7 @@ Todo funciona en tu propio ordenador, pero Nginx lo divide en "puertos" como si 
 ---
 
 ## 3. Cómo Arrancar y Parar Todo
+### Por Aritz y Mohammad
 
 No necesitas escribir comandos difíciles. Hemos creado scripts para ello 👍:
 
@@ -54,6 +56,7 @@ Para el arranque local necesitas Windows con Git Bash, el bundle incluido `nginx
 ---
 
 ## 4. Zonas Privadas (Solo para Socios)
+### Por Aritz
 
 Las secciones `/socios/` y `/avisos/` te pedirán un usuario y contraseña. Las contraseñas están ocultas (cifradas) en el archivo `usuarios.txt` para que nadie pueda leerlas. Hemos usado usuarios en minusculas como convenio ya que python es sensible a las mayusculas y minusculas. ¿Para que complicarse la vida?
 
@@ -66,6 +69,7 @@ Las secciones `/socios/` y `/avisos/` te pedirán un usuario y contraseña. Las 
 ---
 
 ## 5. Seguridad y el "Candado" Verde (HTTPS)
+### Por Aritz
 
 La web principal está cifrada con un certificado de seguridad (`publica.crt`). Esto significa que si alguien espía la red, solo verá texto incomprensible.
 
@@ -76,6 +80,7 @@ La web principal está cifrada con un certificado de seguridad (`publica.crt`). 
 ---
 
 ## 6. Las Páginas de la Web y los Errores
+### Por Aritz
 
 La web tiene un diseño unificado (gracias al archivo `estilo.css`) y unas páginas de error amigables para no asustar a los usuarios:
 
@@ -85,6 +90,7 @@ La web tiene un diseño unificado (gracias al archivo `estilo.css`) y unas pági
 ---
 
 ## 7. Pruebas Automáticas
+### Por Aritz y Mohammad
 
 La batería de `pruebas.sh` está pensada para el **Nginx nativo local**, no para Docker Compose. Comprueba la redirección HTTP/HTTPS, las páginas públicas y CSS, la página 404, las cabeceras de seguridad, gzip, la versión de Nginx, el acceso a socios, descargas, API y avisos directos y protegidos. Espera al menos 29 resultados entre pruebas ejecutadas y omitidas.
 
@@ -113,6 +119,7 @@ Usa la contraseña en texto claro correspondiente al usuario; `usuarios.txt` gua
 ---
 
 # Miguel A:
+### Por Miguel Angel
 
 ** La parte que he echo yo es sobre la API, la cual tendra datos de los animales de la protectora **
 ** La API, siglas de Interfaz de Programación de Aplicaciones sirve para comunicarse con las diferentes partes del software **
@@ -123,6 +130,7 @@ Usa la contraseña en texto claro correspondiente al usuario; `usuarios.txt` gua
 ** 4 - Se muestra el HTML en la web **
 
 ## 8. Logs (El chivato del servidor)
+### Por Aritz
 
 El servidor anota absolutamente todo lo que pasa en unos archivos de texto dentro de la carpeta `logs/`. Si algo falla, mira aquí:
 
@@ -130,9 +138,12 @@ El servidor anota absolutamente todo lo que pasa en unos archivos de texto dentr
 - `logs/descargas.log`: Chiva quién se baja los archivos y cuánto pesan.
 - `logs/error.log`: Si el servidor explota o se apaga solo, Nginx escribirá aquí el motivo del infarto ❤️‍🩹❤️‍🩹❤️‍🩹.
 
-<!-- Instrucciones para ejecutar el proyecto con Docker Compose. -->
+
+<!-- Instrucciones para ejecutar el proyecto con Docker Compose.-->
+
 
 ## Ejecucion con Docker
+### Por Mohammad 
 
 1. En GitHub Codespaces, abre una terminal en la raíz del proyecto y comprueba que Docker Compose está disponible con `docker compose version`. En Windows local, instala y arranca Docker Desktop con el motor de contenedores Linux habilitado.
 2. Nginx necesita los certificados locales `nginx/conf/publica.crt` y `nginx/conf/publica.key`. Si no están en tu copia del proyecto, créalos desde Git Bash con OpenSSL:
