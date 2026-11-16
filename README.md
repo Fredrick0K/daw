@@ -130,7 +130,7 @@ Usa la contraseña en texto claro correspondiente al usuario; `usuarios.txt` gua
 ** 4 - Se muestra el HTML en la web **
 
 ## 8. Logs (El chivato del servidor)
-### Por Aritz
+### Por Miguel Angel (Sin hacer) (lo escribio Aritz)
 
 El servidor anota absolutamente todo lo que pasa en unos archivos de texto dentro de la carpeta `logs/`. Si algo falla, mira aquí:
 
