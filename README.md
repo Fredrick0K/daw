@@ -1,4 +1,7 @@
 ###
+> [!NOTE]
+> ### El trabajo fue hecho por Aritz, Mohammad y Miguel Angel
+
 
 > [!caution]
 >
