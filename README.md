@@ -1,4 +1,3 @@
-
 > [!caution]
 >
 > ### No subir nada al main, todo a tu rama correspondiente. Cualquir commit puede causar conflictos en futuros merge.
@@ -21,6 +20,7 @@ Este servidor aloja la infraestructura web de la **Protectora de animales "Patit
 ---
 
 ## 2. Mapa del Servidor
+
 ### Por Aritz y Mohammad
 
 Todo funciona en tu propio ordenador, pero Nginx lo divide en "puertos" como si fueran puertas distintas de un mismo edificio:
@@ -43,6 +43,7 @@ Todo funciona en tu propio ordenador, pero Nginx lo divide en "puertos" como si 
 ---
 
 ## 3. Cómo Arrancar y Parar Todo
+
 ### Por Aritz y Mohammad
 
 No necesitas escribir comandos difíciles. Hemos creado scripts para ello 👍:
@@ -50,11 +51,12 @@ No necesitas escribir comandos difíciles. Hemos creado scripts para ello 👍:
 - **Para Encender (`bash arrancar.sh`):** Copia los sitios y la configuración local a `nginx-1.28.3`, valida e inicia Nginx y arranca la API y el servidor de avisos. Al final ejecuta automáticamente `pruebas.sh` y guarda el resultado en `pruebas.txt`. Si alguna prueba falla, el script termina con código de error.
 - **Para Apagar (`bash parar.sh`):** Mata los procesos de Python y detiene a Nginx de forma segura para no corromper nada.
 
-Para el arranque local necesitas Windows con Git Bash, el bundle incluido `nginx-1.28.3`, Python disponible con el comando `python` y las dependencias de `api/requirements.txt` instaladas. Instálalas desde la raíz del proyecto con `python -m pip install -r api/requirements.txt`. Los puertos locales `8080`, `8443`, `8000` y `8001` deben estar libres.
+Para el arranque local en cualquier equipo Windows necesitas Git Bash, el bundle incluido `nginx-1.28.3`, Python 3 disponible como `python`, `python3` o `py -3`, y las dependencias de `api/requirements.txt` instaladas. El script detecta esos comandos y comprueba Flask y Waitress antes de iniciar. Instala las dependencias con el comando que exista en tu equipo, por ejemplo `python -m pip install -r api/requirements.txt`. Las rutas se calculan desde la carpeta de los scripts, así que puedes clonar el proyecto en otra ubicación; los puertos locales `8080`, `8443`, `8000` y `8001` deben estar libres. Estos scripts usan el Nginx nativo para Windows (`nginx.exe`); en macOS o Linux, utiliza Docker Compose.
 
 ---
 
 ## 4. Zonas Privadas (Solo para Socios)
+
 ### Por Aritz
 
 Las secciones `/socios/` y `/avisos/` te pedirán un usuario y contraseña. Las contraseñas están ocultas (cifradas) en el archivo `usuarios.txt` para que nadie pueda leerlas. Hemos usado usuarios en minusculas como convenio ya que python es sensible a las mayusculas y minusculas. ¿Para que complicarse la vida?
@@ -68,6 +70,7 @@ Las secciones `/socios/` y `/avisos/` te pedirán un usuario y contraseña. Las 
 ---
 
 ## 5. Seguridad y el "Candado" Verde (HTTPS)
+
 ### Por Aritz
 
 La web principal está cifrada con un certificado de seguridad (`publica.crt`). Esto significa que si alguien espía la red, solo verá texto incomprensible.
@@ -79,6 +82,7 @@ La web principal está cifrada con un certificado de seguridad (`publica.crt`). 
 ---
 
 ## 6. Las Páginas de la Web y los Errores
+
 ### Por Aritz
 
 La web tiene un diseño unificado (gracias al archivo `estilo.css`) y unas páginas de error amigables para no asustar a los usuarios:
@@ -89,6 +93,7 @@ La web tiene un diseño unificado (gracias al archivo `estilo.css`) y unas pági
 ---
 
 ## 7. Pruebas Automáticas
+
 ### Por Aritz y Mohammad
 
 La batería de `pruebas.sh` está pensada para el **Nginx nativo local**, no para Docker Compose. Comprueba la redirección HTTP/HTTPS, las páginas públicas y CSS, la página 404, las cabeceras de seguridad, gzip, la versión de Nginx, el acceso a socios, descargas, API y avisos directos y protegidos. Espera al menos 29 resultados entre pruebas ejecutadas y omitidas.
@@ -118,6 +123,7 @@ Usa la contraseña en texto claro correspondiente al usuario; `usuarios.txt` gua
 ---
 
 # Miguel A:
+
 ### Por Miguel Angel
 
 ** La parte que he echo yo es sobre la API, la cual tendra datos de los animales de la protectora **
@@ -129,6 +135,7 @@ Usa la contraseña en texto claro correspondiente al usuario; `usuarios.txt` gua
 ** 4 - Se muestra el HTML en la web **
 
 ## 8. Logs (El chivato del servidor)
+
 ### Por Miguel Angel (Sin hacer) (lo escribio Aritz)
 
 El servidor anota absolutamente todo lo que pasa en unos archivos de texto dentro de la carpeta `logs/`. Si algo falla, mira aquí:
@@ -137,12 +144,11 @@ El servidor anota absolutamente todo lo que pasa en unos archivos de texto dentr
 - `logs/descargas.log`: Chiva quién se baja los archivos y cuánto pesan.
 - `logs/error.log`: Si el servidor explota o se apaga solo, Nginx escribirá aquí el motivo del infarto ❤️‍🩹❤️‍🩹❤️‍🩹.
 
-
 <!-- Instrucciones para ejecutar el proyecto con Docker Compose.-->
 
-
 ## Ejecucion con Docker
-### Por Mohammad 
+
+### Por Mohammad
 
 1. En GitHub Codespaces, abre una terminal en la raíz del proyecto y comprueba que Docker Compose está disponible con `docker compose version`. En Windows local, instala y arranca Docker Desktop con el motor de contenedores Linux habilitado.
 2. Nginx necesita los certificados locales `nginx/conf/publica.crt` y `nginx/conf/publica.key`. Si no están en tu copia del proyecto, créalos desde Git Bash con OpenSSL:

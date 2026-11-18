@@ -1,20 +1,27 @@
 #!/bin/bash
-# Para el servidor entero. Desde la carpeta del trabajo: bash parar.sh
+# Detiene el entorno local usando rutas relativas a la ubicación de este script.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 NGINX_DIR="$SCRIPT_DIR/nginx-1.28.3"
 
-# Matar solo nuestros procesos exactos de Python
-if [ -f "$SCRIPT_DIR/api/pid.txt" ]; then
-    kill "$(cat "$SCRIPT_DIR/api/pid.txt")" 2> /dev/null
-fi
-if [ -f "$SCRIPT_DIR/avisos/pid.txt" ]; then
-    kill "$(cat "$SCRIPT_DIR/avisos/pid.txt")" 2> /dev/null
-fi
-rm -f "$SCRIPT_DIR/api/pid.txt" "$SCRIPT_DIR/avisos/pid.txt"
+stop_process() {
+    local pid_file="$1"
+    if [ -f "$pid_file" ]; then
+        local pid
+        pid="$(<"$pid_file")"
+        if [[ "$pid" =~ ^[0-9]+$ ]]; then
+            kill "$pid" 2>/dev/null || true
+        fi
+        rm -f "$pid_file"
+    fi
+}
+
+# Detiene únicamente los procesos cuyos PID guardó el script de arranque.
+stop_process "$SCRIPT_DIR/api/pid.txt"
+stop_process "$SCRIPT_DIR/avisos/pid.txt"
 
 # Detener Nginx
-if [ -f "$NGINX_DIR/nginx.exe" ]; then
+if [ -x "$NGINX_DIR/nginx.exe" ]; then
     (cd "$NGINX_DIR" && ./nginx.exe -s stop 2> /dev/null)
 fi
 
